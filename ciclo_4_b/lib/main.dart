@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'Negocio.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,10 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //_counter++;
     });
   }*/
-  List<String> listaDirecciones = ["cacsdf","afead","svfdasfas","vafada","cafefs"];
-  List<String> listaTelefonos = ["43431","852423","3534524","52352","542423"];
-  List<String> listaCelulares = ["5234133","4234235","4234545","523323","524523"];
-  List<String> listaSitios = ["gsgvdsds","fsfvds","fajaasca","frdvdss","ffacdas"];
+  List<Negocio> negocios = [Negocio("ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","vsavf")];
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -85,13 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: ListView.builder(
-          itemCount: listaDirecciones.length,
+          itemCount: negocios.length,
           itemBuilder: (BuildContext context, int index){
-            return Negocio(
-              Direccion: listaDirecciones[index],
-              Telefono: listaTelefonos[index],
-              Celular: listaCelulares[index],
-              SitioWeb: listaSitios[index],
+            return WidgetNegocio(negocio:
+                negocios[index]
             );
           },
         )
@@ -101,52 +96,59 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Negocio extends StatefulWidget {
-  const Negocio({Key? key, required this.Direccion,required this.Telefono, required this.Celular, required this.SitioWeb}) : super(key: key);
-  final String Direccion;
-  final String Telefono;
-  final String Celular;
-  final String SitioWeb;
+class WidgetNegocio extends StatefulWidget {
+  const WidgetNegocio({Key? key, required this.negocio}) : super(key: key);
+  final Negocio negocio;
   @override
-  _NegocioState createState() => _NegocioState();
+  _WidgetNegocioState createState() => _WidgetNegocioState();
 }
-  class _NegocioState extends State<Negocio> {
+  class _WidgetNegocioState extends State<WidgetNegocio> {
     final String title = "Flutter Demo Home Page";
     @override
     Widget build(BuildContext context) {
       return Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(Icons.fastfood
-                        ),
-                        Text(
-                            "Nombre"
-                        ),
-                      ]
+                  Icon(Icons.fastfood
                   ),
-                  hacerFilaDatos("Direccion ", widget.Direccion),
-                  hacerFilaDatos("Telefono ", widget.Telefono),
-                  hacerFilaDatos("Celular ", widget.Celular),
-                  hacerFilaDatos("Sitio Web ", widget.SitioWeb)
+                  Text(
+                      widget.negocio.Nombre
+                  ),
                 ]
-            );
+            ),
+            hacerFilaDatos("Direccion ", widget.negocio.Direccion),
+            hacerFilaDatos("Telefono ", widget.negocio.Telefono),
+            hacerFilaDatos("Celular ", widget.negocio.Celular),
+            hacerFilaDatos("Sitio Web ", widget.negocio.PaginaWeb),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Text("Productos"),
+                  Text("Lista de productos y servicios")
+                ],
+              ),
+            ),
+            Icon(Icons.photo)
+          ]
+      );
     }
 
-    Center hacerFilaDatos(String label, String dato)
+    Row hacerFilaDatos(String label, String dato)
     {
-      final double TextSize = 1.5;
-      return Center(
-        child: Row(
-        children: <Widget>[
-          Text(label,
-          textScaleFactor: TextSize
-          ),
-          Text(dato,
-          textScaleFactor: TextSize,)
-        ]
-      )
+      const double textSize = 1.5;
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text(label,
+            textScaleFactor: textSize
+            ),
+            Text(dato,
+            textScaleFactor: textSize,)
+          ]
       );
     }
 
