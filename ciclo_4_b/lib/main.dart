@@ -1,10 +1,47 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Negocio.dart';
+import 'negocio.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const App());
 }
+class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
+  // Create the initialization Future outside of `build`:
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  /// The future is part of the state of our widget. We should not call `initializeApp`
+  /// directly inside [build].
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return Center(child: const Text("Error", textDirection: TextDirection.ltr,));
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return const MyApp();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return Center(child: Text("Loading...", textDirection: TextDirection.ltr,));
+      },
+    );
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -52,19 +89,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //int _counter = 0;
+  int _indice = 0;
 
-  /*void _incrementCounter() {
+  void _indiceDeBarraInferiorSeleccionado(int indice) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      //_counter++;
+      _indice = indice;
     });
-  }*/
-  List<Negocio> negocios = [Negocio("ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","vsavf")];
+  }
+
+  List<Negocio> negocios = [Negocio(1,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","vsavf")];
+
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -90,8 +130,34 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
         )
+      ),
+      bottomNavigationBar: barraInferior(),
+
+
+    );
+  }
+
+  BottomNavigationBar barraInferior ()
+  {
+    return BottomNavigationBar(items: const <BottomNavigationBarItem>[
+      BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: "Inicio"
+      ),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: "Cuenta"
+      ),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: "Configuracion"
       )
 
+    ],
+      currentIndex: _indice,
+      unselectedItemColor: Colors.green,
+      selectedItemColor: Colors.lightGreen,
+      onTap: _indiceDeBarraInferiorSeleccionado,
     );
   }
 }
@@ -116,14 +182,14 @@ class WidgetNegocio extends StatefulWidget {
                   Icon(Icons.fastfood
                   ),
                   Text(
-                      widget.negocio.Nombre
+                      widget.negocio.nombre
                   ),
                 ]
             ),
-            hacerFilaDatos("Direccion ", widget.negocio.Direccion),
-            hacerFilaDatos("Telefono ", widget.negocio.Telefono),
-            hacerFilaDatos("Celular ", widget.negocio.Celular),
-            hacerFilaDatos("Sitio Web ", widget.negocio.PaginaWeb),
+            hacerFilaDatos("Direccion ", widget.negocio.direccion),
+            hacerFilaDatos("Telefono ", widget.negocio.telefono),
+            hacerFilaDatos("Celular ", widget.negocio.celular),
+            hacerFilaDatos("Sitio Web ", widget.negocio.pagina_web),
             Container(
               child: Column(
                 children: <Widget>[
@@ -151,8 +217,9 @@ class WidgetNegocio extends StatefulWidget {
           ]
       );
     }
-
   }
+
+
 
 
 
