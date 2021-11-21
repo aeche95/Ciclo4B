@@ -1,10 +1,13 @@
+import 'package:ciclo_4_b/widget_negocio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'negocio.dart';
+import 'base_de_datos.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  //start();
   runApp(const App());
 }
 class App extends StatefulWidget {
@@ -136,7 +139,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     );
   }
-
   BottomNavigationBar barraInferior ()
   {
     return BottomNavigationBar(items: const <BottomNavigationBarItem>[
@@ -145,8 +147,11 @@ class _MyHomePageState extends State<MyHomePage> {
           label: "Inicio"
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: "Cuenta"
+          icon: Icon(Icons.search),
+          label: "Busqueda"),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.star),
+          label: "Pedidos"
       ),
       BottomNavigationBarItem(
           icon: Icon(Icons.settings),
@@ -162,62 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class WidgetNegocio extends StatefulWidget {
-  const WidgetNegocio({Key? key, required this.negocio}) : super(key: key);
-  final Negocio negocio;
-  @override
-  _WidgetNegocioState createState() => _WidgetNegocioState();
-}
-  class _WidgetNegocioState extends State<WidgetNegocio> {
-    final String title = "Flutter Demo Home Page";
-    @override
-    Widget build(BuildContext context) {
-      return Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Icon(Icons.fastfood
-                  ),
-                  Text(
-                      widget.negocio.nombre
-                  ),
-                ]
-            ),
-            hacerFilaDatos("Direccion ", widget.negocio.direccion),
-            hacerFilaDatos("Telefono ", widget.negocio.telefono),
-            hacerFilaDatos("Celular ", widget.negocio.celular),
-            hacerFilaDatos("Sitio Web ", widget.negocio.pagina_web),
-            Container(
-              child: Column(
-                children: <Widget>[
-                  Text("Productos"),
-                  Text("Lista de productos y servicios")
-                ],
-              ),
-            ),
-            Icon(Icons.photo)
-          ]
-      );
-    }
 
-    Row hacerFilaDatos(String label, String dato)
-    {
-      const double textSize = 1.5;
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(label,
-            textScaleFactor: textSize
-            ),
-            Text(dato,
-            textScaleFactor: textSize,)
-          ]
-      );
-    }
-  }
 
 
 

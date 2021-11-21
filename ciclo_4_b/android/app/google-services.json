@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "62669403629",
-    "project_id": "ciclo-4b-grupo-1",
-    "storage_bucket": "ciclo-4b-grupo-1.appspot.com"
+    "project_number": "304438474755",
+    "project_id": "reto-ciclo-4b-grupo-18-1",
+    "storage_bucket": "reto-ciclo-4b-grupo-18-1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:62669403629:android:4d2751b979a0b1ee73a3e4",
+        "mobilesdk_app_id": "1:304438474755:android:7a69f97d62d9dc6c13f636",
         "android_client_info": {
           "package_name": "com.example.ciclo_4_b"
         }
       },
       "oauth_client": [
         {
-          "client_id": "62669403629-lt91iej1uhaf6la3d4eg520rohe2j7hk.apps.googleusercontent.com",
+          "client_id": "304438474755-uh0sggta3v7t854u80u0vgp9aukkar9i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCsxsUfta1e4_mhhzU05xoKaY4CHGDtP-s"
+          "current_key": "AIzaSyCrYODfg6Xw8pKc6SP3wusrR0IUvjrrzcs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "62669403629-lt91iej1uhaf6la3d4eg520rohe2j7hk.apps.googleusercontent.com",
+              "client_id": "304438474755-uh0sggta3v7t854u80u0vgp9aukkar9i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
