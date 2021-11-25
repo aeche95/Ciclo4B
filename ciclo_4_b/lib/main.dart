@@ -1,3 +1,4 @@
+import 'package:ciclo_4_b/widget_ingreso.dart';
 import 'package:ciclo_4_b/widget_negocio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -68,13 +69,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Aplicacion movil Ciclo 4B'),
+      home: const WidgetIngreso(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -85,7 +86,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String title = "Aplicacion Movil Ciclo 4B";
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();

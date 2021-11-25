@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sqflite/sqflite.dart';
+import 'base_de_datos.dart';
 import 'negocio.dart';
 
 class WidgetNegocio extends StatefulWidget {
@@ -65,3 +67,5 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
     );
   }
 }
+
+
