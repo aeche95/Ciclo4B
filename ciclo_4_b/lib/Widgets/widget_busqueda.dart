@@ -1,7 +1,5 @@
-import '../Modelo/negocio.dart';
 import 'widget_negocio.dart';
 import 'package:flutter/material.dart';
-
 import '../base_de_datos.dart';
 
 class WidgetBusqueda extends StatefulWidget {

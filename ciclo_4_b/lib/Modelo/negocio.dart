@@ -1,8 +1,3 @@
-import 'dart:convert';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-import '../base_de_datos.dart';
-
 class Negocio {
   final int id;
   final String nombre;

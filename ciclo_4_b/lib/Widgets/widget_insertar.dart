@@ -1,4 +1,3 @@
-import 'package:ciclo_4_b/Widgets/widget_cuenta.dart';
 import 'package:flutter/material.dart';
 
 class WidgetInsertar extends StatefulWidget{
@@ -16,14 +15,14 @@ class _WidgetInsertarState extends State<WidgetInsertar> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          bottom:  TabBar(
+        appBar: TabBar(
+          labelColor: Colors.lightGreen,
               tabs: [
                 Tab(text: "Insertar Negocio",),
                 Tab(text: "Insertar Usuario",)
               ]
           ),
-        ),
+
           body: TabBarView(children: [
                 insertarNegocio(),
                 insertarUsuario()

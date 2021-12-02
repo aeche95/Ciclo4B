@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sqflite/sqflite.dart';
-import '../base_de_datos.dart';
 import '../Modelo/negocio.dart';
 
 class WidgetNegocio extends StatefulWidget {
   const WidgetNegocio({Key? key, required this.negocio}) : super(key: key);
   final Negocio negocio;
+
   @override
   _WidgetNegocioState createState() => _WidgetNegocioState();
 }
 class _WidgetNegocioState extends State<WidgetNegocio> {
+  final double textSize = 18;
   late GoogleMapController mapController;
   final LatLng _center = const LatLng(45.521563, -122.677433);
 
@@ -32,7 +32,10 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
                   size: 40,
                 ),
                 Text(
-                    widget.negocio.nombre
+                    widget.negocio.nombre,
+                  style: TextStyle(
+                    fontSize: 22
+                  ),
                 ),
               ]
           ),
@@ -54,7 +57,10 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
           Container(
             child: Column(
               children: <Widget>[
-                Text("Productos"),
+                Text("Productos",
+                style: TextStyle(
+                  fontSize: textSize
+                ),),
                 Text("Lista de productos y servicios")
               ],
             ),
@@ -67,7 +73,7 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
 
   Row hacerFilaDatos(String label, String dato)
   {
-    const double textSize = 18;
+
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[

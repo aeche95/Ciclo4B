@@ -1,5 +1,6 @@
+import 'package:ciclo_4_b/Modelo/usuario.dart';
 import 'package:ciclo_4_b/Widgets/widget_pagina_principal.dart';
-import '../main.dart';
+import 'package:ciclo_4_b/base_de_datos.dart';
 import 'package:flutter/material.dart';
 
 class WidgetIngreso extends StatefulWidget{
@@ -12,8 +13,9 @@ class WidgetIngreso extends StatefulWidget{
 
 class _WidgetIngresoState extends State<WidgetIngreso>{
 
-  String TextoUsuario = "";
-  String TextoContrasena = "";
+  var db = MetodosSQLite();
+  String textoUsuario = "";
+  String textoContrasena = "";
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -27,7 +29,11 @@ class _WidgetIngresoState extends State<WidgetIngreso>{
                  border: OutlineInputBorder(),
                  labelText: "Usuario",
                  icon: Icon(Icons.person),
+
              ),
+             onChanged: (String value){
+               textoUsuario = value;
+             },
 
            ),
            TextField(
@@ -35,14 +41,31 @@ class _WidgetIngresoState extends State<WidgetIngreso>{
            border: OutlineInputBorder(),
            labelText: "Contraseña",
            icon: Icon(Icons.password)
-           )
+           ),
+           obscureText: true,
+           enableSuggestions: false,
+           autocorrect: false,
+           onChanged: (String value){
+             textoContrasena = value;
+             },
            ),
            ButtonBar(
              children: [
                OutlinedButton(
                    onPressed: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
+                     db.connect();
+                     bool correcto = false;
+                     for (Usuario u in db.listaUsuarios){
+                       if (u.password == textoContrasena){
+                         correcto = true;
+                       }
+                     }
+                     if(correcto) {
+                       Navigator.push(context, MaterialPageRoute(
+                           builder: (context) => MyHomePage()));
+                     }
                    },
+
                    child: Text(
                      "Ingresar"
                    )

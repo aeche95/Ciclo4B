@@ -18,12 +18,12 @@ class MetodosSQLite {
     Negocio(6,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","vsavf")];
 
   List<Usuario> listaUsuarios = [
-    Usuario(0,"fsfsdf","vsvbsvfs","645635","63675"),
-    Usuario(1,"fsfsdf","vsvbsvfs","645635","63675"),
-    Usuario(2,"fsfsdf","vsvbsvfs","645635","63675"),
-    Usuario(3,"fsfsdf","vsvbsvfs","645635","63675"),
-    Usuario(4,"fsfsdf","vsvbsvfs","645635","63675"),
-    Usuario(5,"fsfsdf","vsvbsvfs","645635","63675")
+    Usuario(0,"fsfsdf","vsvbsvfs","645635","63675","123"),
+    Usuario(1,"fsfsdf","vsvbsvfs","645635","63675","123"),
+    Usuario(2,"fsfsdf","vsvbsvfs","645635","63675","123"),
+    Usuario(3,"fsfsdf","vsvbsvfs","645635","63675","123"),
+    Usuario(4,"fsfsdf","vsvbsvfs","645635","63675","123"),
+    Usuario(5,"fsfsdf","vsvbsvfs","645635","63675","123")
   ];
 
   Future<void> connect() async {

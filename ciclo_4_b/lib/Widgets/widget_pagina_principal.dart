@@ -4,10 +4,7 @@ import 'package:ciclo_4_b/Widgets/widget_insertar.dart';
 import 'package:ciclo_4_b/Widgets/widget_lista_negocios.dart';
 import 'package:ciclo_4_b/Widgets/widget_pedidos.dart';
 import 'package:ciclo_4_b/base_de_datos.dart';
-import 'widget_negocio.dart';
 import 'package:flutter/material.dart';
-
-import '../Modelo/negocio.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -88,8 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: "Configuracion"
-        )
-
+        ),
       ],
       currentIndex: _indice,
       unselectedItemColor: Colors.green,

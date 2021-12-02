@@ -1,9 +1,7 @@
 import 'package:ciclo_4_b/Widgets/widget_ingreso.dart';
-import 'Widgets/widget_negocio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'Modelo/negocio.dart';
-import 'base_de_datos.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
