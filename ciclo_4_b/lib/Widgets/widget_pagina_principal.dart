@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var db = MetodosSQLite();
   int _indice = 0;
   static List<Widget> WidgetsPaginaPrincipal = <Widget>[
-    WidgetListaNegocios(),
+    WidgetListaNegocios(listaNegocios: MetodosSQLite.listaNegocios,),
     WidgetInsertar(),
     WidgetPedidos(),
     WidgetConfiguracion()

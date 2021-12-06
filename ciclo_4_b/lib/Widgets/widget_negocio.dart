@@ -85,7 +85,7 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
                 style: TextStyle(
                   fontSize: textSize
                 ),),
-                Text("Lista de productos y servicios")
+                Text(widget.negocio.productos.toString())
               ],
             ),
           ),

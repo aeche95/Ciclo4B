@@ -1,10 +1,10 @@
+import 'package:ciclo_4_b/Modelo/negocio.dart';
 import 'package:ciclo_4_b/Widgets/widget_negocio.dart';
-import 'package:ciclo_4_b/base_de_datos.dart';
 import 'package:flutter/material.dart';
 
 class WidgetListaNegocios extends StatefulWidget{
-  const WidgetListaNegocios({Key? key}) : super(key: key);
-
+  const WidgetListaNegocios({Key? key, required this.listaNegocios}) : super(key: key);
+  final List<Negocio> listaNegocios;
   @override
   State<StatefulWidget> createState() => _WidgetListaNegociosState();
 
@@ -12,14 +12,13 @@ class WidgetListaNegocios extends StatefulWidget{
 
 class _WidgetListaNegociosState extends State<WidgetListaNegocios>{
 
-  var db = MetodosSQLite();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: db.listaNegocios.length,
+      itemCount: widget.listaNegocios.length,
       itemBuilder: (BuildContext context, int index) {
         return WidgetNegocio(negocio:
-        db.listaNegocios[index]
+        widget.listaNegocios[index]
         );
       },
     );

@@ -9,14 +9,11 @@ class MetodosSQLite {
 
   MetodosSQLite();
   late Future<Database> _database;
-  List<Negocio> listaNegocios = [
-    Negocio(0,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","http://google.com"),
-    Negocio(1,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","http://google.com"),
-    Negocio(2,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","http://google.com"),
-    Negocio(3,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","http://google.com"),
-    Negocio(4,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","http://google.com"),
-    Negocio(5,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","http://google.com"),
-    Negocio(6,"ffsdfs","vfsfsdf","gsvdsvsd","cfsvsvs","fvsdvgvs","http://google.com")];
+  static final List<Negocio> listaNegocios = [
+    Negocio(0,"Drogueria","Direccion","Localizacion","1234567","1234567890","http://google.com",["acetaminofen","papas","gaseosa"]),
+    Negocio(1,"Tienda","Direccion","Localizacion","1234567","1234567890","http://google.com",["acetaminofen","papas","gaseosa"]),
+    Negocio(2,"Cigarreria","Direccion","Localizacion","1234567","1234567890","http://google.com",["acetaminofen","papas","gaseosa"]),
+    ];
 
   List<Usuario> listaUsuarios = [
     Usuario(0,"fsfsdf","vsvbsvfs","645635","63675","123"),

@@ -6,10 +6,10 @@ class Negocio {
   final String telefono;
   final String celular;
   final String paginaWeb;
-  /*final List<String> productos;
-  final Image logo;
+  final List<String> productos;
+  /*final Image logo;
   final Image foto;*/
-  Negocio(this.id,this.nombre,this.direccion,this.localizacion,this.telefono,this.celular,this.paginaWeb,/*this.productos,this.logo,this.foto*/);
+  Negocio(this.id,this.nombre,this.direccion,this.localizacion,this.telefono,this.celular,this.paginaWeb,this.productos/*,this.logo,this.foto*/);
 
   Negocio.fromJson(Map<String, dynamic> json)
   : id = json['id'],
@@ -18,7 +18,8 @@ class Negocio {
     localizacion = json['localizacion'],
     telefono = json['telefono'],
     celular = json['celular'],
-    paginaWeb = json['pagina'];
+    paginaWeb = json['pagina'],
+    productos = json['productos'];
 
   Map<String, dynamic> toJson() => {
     'id' : id,
@@ -27,7 +28,8 @@ class Negocio {
     'localizacion' : localizacion,
     'telefono' : telefono,
     'celular' : celular,
-    'pagina' : paginaWeb
+    'pagina' : paginaWeb,
+    'productos' : productos
       };
 
 
