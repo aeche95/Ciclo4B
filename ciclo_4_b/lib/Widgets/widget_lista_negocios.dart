@@ -17,8 +17,12 @@ class _WidgetListaNegociosState extends State<WidgetListaNegocios>{
     return ListView.builder(
       itemCount: widget.listaNegocios.length,
       itemBuilder: (BuildContext context, int index) {
-        return WidgetNegocio(negocio:
-        widget.listaNegocios[index]
+        return Container(
+          color: Colors.white,
+          margin: EdgeInsets.only(bottom: 20),
+          child: WidgetNegocio(negocio:
+          widget.listaNegocios[index]
+          ),
         );
       },
     );

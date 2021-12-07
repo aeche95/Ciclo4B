@@ -13,7 +13,7 @@ class WidgetNegocio extends StatefulWidget {
 }
 
 class _WidgetNegocioState extends State<WidgetNegocio> {
-  final double textSize = 16;
+  final double textSize = 14;
   late GoogleMapController mapController;
   final LatLng _center = const LatLng(45.521563, -122.677433);
 
@@ -38,13 +38,25 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 ImgUtils.ImageUtil(widget.negocio.logoName),
-                Text(
-                    widget.negocio.nombre,
-                  style: TextStyle(
-                    fontSize: 22
-                  ),
-                ),
-              ]
+                Column(
+                  children: [
+                    Text(
+                        widget.negocio.nombre,
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    ),
+                    hacerFilaDatos("", widget.negocio.direccion),
+                    hacerFilaDatos("Telefono ", widget.negocio.telefono),
+                    hacerFilaDatos("Celular ", widget.negocio.celular),
+
+                    TextButton(
+                            onPressed: () => _abrirURL(widget.negocio.paginaWeb),
+                            child: Text(widget.negocio.paginaWeb),
+                    ),
+                        ]
+                    ),
+                  ],
           ),
           /*SizedBox(
             width: 300,
@@ -57,23 +69,6 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
                 ),
             ),
           ),*/
-          hacerFilaDatos("Direccion ", widget.negocio.direccion),
-          hacerFilaDatos("Telefono ", widget.negocio.telefono),
-          hacerFilaDatos("Celular ", widget.negocio.celular),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text("Sitio Web",
-                style: TextStyle(
-                fontSize: textSize
-              )
-              ),
-              TextButton(
-                onPressed: () => _abrirURL(widget.negocio.paginaWeb),
-                child: Text(widget.negocio.paginaWeb),)
-            ]
-          ),
 
           Container(
             child: Column(
