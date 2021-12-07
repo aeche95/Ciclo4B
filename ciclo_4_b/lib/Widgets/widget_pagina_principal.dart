@@ -1,10 +1,39 @@
+import 'package:ciclo_4_b/Widgets/widget_busqueda.dart';
 import 'package:ciclo_4_b/Widgets/widget_configuracion.dart';
 import 'package:ciclo_4_b/Widgets/widget_cuenta.dart';
 import 'package:ciclo_4_b/Widgets/widget_insertar.dart';
 import 'package:ciclo_4_b/Widgets/widget_lista_negocios.dart';
 import 'package:ciclo_4_b/Widgets/widget_pedidos.dart';
-import 'package:ciclo_4_b/base_de_datos.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
+import '../Utils/base_de_datos.dart';
 import 'package:flutter/material.dart';
+
+class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Aplicacion Movil Ciclo 4B',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primarySwatch: Colors.green,
+      ),
+      home: MyHomePage(),
+    );
+  }
+
+}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -25,7 +54,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var db = MetodosSQLite();
+  bool busquedaActiva = false;
   int _indice = 0;
   static List<Widget> WidgetsPaginaPrincipal = <Widget>[
     WidgetListaNegocios(listaNegocios: MetodosSQLite.listaNegocios,),
@@ -52,7 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {  },)
+            onPressed: () { setState(() {
+              busquedaActiva = !busquedaActiva;
+            }); },)
         ],
       ),
       drawer: const Drawer(
@@ -60,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: Center(
-          child: WidgetsPaginaPrincipal[_indice]
+          child: busquedaActiva? WidgetBusqueda() : WidgetsPaginaPrincipal[_indice]
       ),
       bottomNavigationBar: barraInferior(),
 

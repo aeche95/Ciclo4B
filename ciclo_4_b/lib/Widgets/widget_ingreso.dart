@@ -1,6 +1,6 @@
 import 'package:ciclo_4_b/Modelo/usuario.dart';
 import 'package:ciclo_4_b/Widgets/widget_pagina_principal.dart';
-import 'package:ciclo_4_b/base_de_datos.dart';
+import '../Utils/base_de_datos.dart';
 import 'package:flutter/material.dart';
 
 class WidgetIngreso extends StatefulWidget{
@@ -62,7 +62,7 @@ class _WidgetIngresoState extends State<WidgetIngreso>{
                      }
                      if(correcto) {
                        Navigator.push(context, MaterialPageRoute(
-                           builder: (context) => MyHomePage()));
+                           builder: (context) => MyApp()));
                      }
                    },
 

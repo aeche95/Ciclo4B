@@ -1,7 +1,7 @@
 import 'package:ciclo_4_b/Modelo/negocio.dart';
 import 'package:ciclo_4_b/Widgets/widget_lista_negocios.dart';
 import 'package:flutter/material.dart';
-import '../base_de_datos.dart';
+import '../Utils/base_de_datos.dart';
 
 class WidgetBusqueda extends StatefulWidget {
   const WidgetBusqueda({Key? key}) : super(key: key);
@@ -11,22 +11,23 @@ class WidgetBusqueda extends StatefulWidget {
 }
 
 class _WidgetBusquedaState extends State<WidgetBusqueda>{
-  List<Negocio> listaTemp = List.empty();
+  List<Negocio> listaTemp = MetodosSQLite.listaNegocios;
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
 
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            TextField(
-              onChanged: (String value) => _actualizarBusqueda,
-            ),
-            WidgetListaNegocios(listaNegocios: listaTemp)
-          ],
-        ),
+      body: Flex(
+        direction: Axis.vertical,
+        children: [
+          TextField(
+            onSubmitted: (String value) => _actualizarBusqueda,
+          ),
+          SizedBox(
+            width: double.infinity,
+              height: MediaQuery.of(context).size.height*0.75,
+              child: WidgetListaNegocios(listaNegocios: listaTemp))
+        ],
       ),
     );
 
@@ -36,7 +37,9 @@ class _WidgetBusquedaState extends State<WidgetBusqueda>{
     setState(() {
       for(Negocio n in MetodosSQLite.listaNegocios){
         if (n.nombre.contains(value) || n.productos.toString().contains(value)){
-          listaTemp.add(n);
+          if(!listaTemp.contains(n)){
+            listaTemp.add(n);
+          };
         }
         else{
           listaTemp.remove(n);
