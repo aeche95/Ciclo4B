@@ -21,7 +21,7 @@ class _WidgetBusquedaState extends State<WidgetBusqueda>{
         direction: Axis.vertical,
         children: [
           TextField(
-            onSubmitted: (String value) => _actualizarBusqueda,
+            onSubmitted: (String value) => _actualizarBusqueda(value),
           ),
           SizedBox(
             width: double.infinity,
