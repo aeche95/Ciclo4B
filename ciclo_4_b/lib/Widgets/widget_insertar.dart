@@ -18,8 +18,10 @@ class _WidgetInsertarState extends State<WidgetInsertar> {
         appBar: TabBar(
           labelColor: Colors.lightGreen,
               tabs: [
-                Tab(text: "Insertar Negocio",),
-                Tab(text: "Insertar Usuario",)
+                Tab(text: "Insertar Negocio",
+                icon: Icon(Icons.fastfood),),
+                Tab(text: "Insertar Usuario",
+                icon: Icon(Icons.person),)
               ]
           ),
 
@@ -32,77 +34,67 @@ class _WidgetInsertarState extends State<WidgetInsertar> {
   }
 }
 Widget insertarNegocio(){
-  return Column(
-    children: <Widget>[
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Nombre",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Direccion",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Localizacion",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Telefono",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Celular",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Pagina Web",
-            icon: Icon(Icons.person),)
-      ),
+  return Center(
+    child: Column(
+      children: <Widget>[
+        campo(Icons.person, "Nombre"),
+        campo(Icons.directions, "Direccion"),
+        campo(Icons.pin_drop, "Localizacion"),
+        campo(Icons.phone, "Telefono"),
+        campo(Icons.phone_android, "Celular"),
+        campo(Icons.computer, "Pagina Web"),
+        Row(
+          children: [
+            ElevatedButton(
+                onPressed: ()=>{},
+                child: Text("Agregar")
+            ),
+            ElevatedButton(
+                onPressed: ()=>{},
+                child: Text("Borrar"))
 
-    ],
+          ],)
+      ],
+    ),
   );
 }
 
 Widget insertarUsuario(){
-  return Column(
-    children: <Widget>[
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Nombre",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Direccion",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Telefono",
-            icon: Icon(Icons.person),)
-      ),
-      TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: "Celular",
-            icon: Icon(Icons.person),)
-      ),
+  return Center(
+    child: Column(
+      children: <Widget>[
+        campo(Icons.person, "Nombre"),
+        campo(Icons.directions, "Direccion"),
+        campo(Icons.phone, "Telefono"),
+        campo(Icons.phone_android, "Celular"),
+        Row(
+          children: [
+          ElevatedButton(
+              onPressed: ()=>{},
+              child: Text("Agregar")
+          ),
+            ElevatedButton(
+                onPressed: ()=>{},
+                child: Text("Borrar"))
 
-    ],
+        ],)
+
+      ],
+    ),
   );
+}
+
+Widget campo(IconData icono, String label){
+  return Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: TextField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: label,
+        icon: Icon(icono),
+
+      ),
+    ),
+  );
+
 }

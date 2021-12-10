@@ -24,76 +24,80 @@ class _WidgetIngresoState extends State<WidgetIngreso>{
        body: Stack(
          children: [
            WidgetContainer1(height: 0.75,),
-           Column(
-           mainAxisSize: MainAxisSize.max,
-           mainAxisAlignment: MainAxisAlignment.center,
-           children: <Widget>[
-             Padding(
-               padding: const EdgeInsets.all(10.0),
-               child: TextField(
-                 decoration: InputDecoration(
+           Center(
+             child: Column(
+             mainAxisSize: MainAxisSize.min,
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: <Widget>[
+               Padding(
+                 padding: const EdgeInsets.all(10.0),
+                 child: TextField(
+                   decoration: InputDecoration(
+                     fillColor: Colors.white,
+                     focusColor: Colors.white,
                      border: OutlineInputBorder(),
                      labelText: "Usuario",
                      icon: Icon(Icons.person),
+                   ),
+                   onChanged: (String value){
+                     textoUsuario = value;
+                   },
+                   enableSuggestions: true,
+
+
                  ),
+               ),
+               Padding(
+                 padding: const EdgeInsets.all(10.0),
+                 child: TextField(
+                 decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                 labelText: "Contraseña",
+                 icon: Icon(Icons.password)
+                 ),
+                 obscureText: true,
+                 enableSuggestions: false,
+                 autocorrect: false,
                  onChanged: (String value){
-                   textoUsuario = value;
-                 },
-                 enableSuggestions: true,
-
-
-               ),
-             ),
-             Padding(
-               padding: const EdgeInsets.all(10.0),
-               child: TextField(
-               decoration: InputDecoration(
-               border: OutlineInputBorder(),
-               labelText: "Contraseña",
-               icon: Icon(Icons.password)
-               ),
-               obscureText: true,
-               enableSuggestions: false,
-               autocorrect: false,
-               onChanged: (String value){
-                 textoContrasena = value;
-                 },
-               ),
-             ),
-             ButtonBar(
-               children: [
-                 OutlinedButton(
-                     onPressed: (){
-                       db.connect();
-                       bool correcto = false;
-                       for (Usuario u in MetodosSQLite.listaUsuarios){
-                         if (u.password == textoContrasena){
-                           correcto = true;
-                         }
-                       }
-                       if(correcto) {
-                         Navigator.push(context, MaterialPageRoute(
-                             builder: (context) => MyApp()));
-                       }
-                     },
-
-                     child: Text(
-                       "Ingresar"
-                     )
+                   textoContrasena = value;
+                   },
                  ),
-                 OutlinedButton(
-                     onPressed: (){
-                       setState(() {
+               ),
+               ButtonBar(
+                 children: [
+                   OutlinedButton(
+                       onPressed: (){
+                         db.connect();
+                         bool correcto = false;
+                         for (Usuario u in MetodosSQLite.listaUsuarios){
+                           if (u.password == textoContrasena){
+                             correcto = true;
+                           }
+                         }
+                         if(correcto) {
+                           Navigator.push(context, MaterialPageRoute(
+                               builder: (context) => MyApp()));
+                         }
+                       },
 
-                       });
-                     },
-                     child: Text(
-                       "Borrar"
-                     ))
-               ],
-             )
-           ],
+                       child: Text(
+                         "Ingresar"
+                       )
+                   ),
+                   OutlinedButton(
+                       onPressed: (){
+                         setState(() {
+
+                         });
+                       },
+                       child: Text(
+                         "Borrar"
+                       ))
+                 ],
+               )
+             ],
          ),
+           ),
        ]
        ),
      ),

@@ -13,36 +13,69 @@ class WidgetCuenta extends StatefulWidget{
 }
 
 class _WidgetCuentaState extends State<WidgetCuenta>{
-  Usuario usuario = MetodosSQLite.listaUsuarios[0];
+  Usuario usuario = MetodosSQLite.listaUsuarios[2];
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.person,size: 60,),
-              Text("Hola "+ usuario.nombre)
-            ],
-          ),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            overflowDirection: VerticalDirection.down,
-            children: [],
-          ),
-          Text("Cuenta"),
-          IconButton(icon: Icon(Icons.door_back_door),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => WidgetBienvenida()));
-            },
+    return SafeArea(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Center(
+              child: Row(
+                children: [
+                  Icon(Icons.person,size: 60,),
+                  Text("Hola "+ usuario.nombre,
+                  style: TextStyle(
+                    fontSize: 18
+                  ),)
+                ],
+              ),
+            ),
+            Row(
+              children: [
 
+              ],
+            ),
+            Row(children: [
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => WidgetBienvenida()));
+                  },
+                  child: Text("Cerrar Sesion")
+              ),
+              IconButton(icon: Icon(Icons.door_back_door,
+                semanticLabel: "Salir",),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => WidgetBienvenida()));
+                },
+              ),
+            ],),
+            Row(
+              children: [
+                ElevatedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => WidgetBienvenida()));
+                    },
+                    child: Text("Editar Datos")
+                ),
+                IconButton(icon: Icon(Icons.settings,
+                  semanticLabel: "Editar",),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => WidgetBienvenida()));
+                  },
+                )
+              ],
+            ),
 
-          )
-        ],
+          ],
+        ),
+
       ),
-
     );
   }
 }

@@ -108,7 +108,8 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
                     context, MaterialPageRoute(
                       builder: (context) => WidgetListaProductos(nombreNegocio: widget.negocio.nombre)))
                 },
-                icon: Icon(Icons.chevron_right)),
+                icon: Icon(Icons.chevron_right),
+                  iconSize: 35,),
           )
         ],
       ),
