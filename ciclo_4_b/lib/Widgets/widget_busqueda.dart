@@ -11,7 +11,7 @@ class WidgetBusqueda extends StatefulWidget {
 }
 
 class _WidgetBusquedaState extends State<WidgetBusqueda>{
-  List<Negocio> listaTemp = MetodosSQLite.listaNegocios;
+  List<Negocio> listaTemp = List.empty(growable: true);
   @override
   Widget build(BuildContext context) {
 
@@ -38,6 +38,7 @@ class _WidgetBusquedaState extends State<WidgetBusqueda>{
       for(Negocio n in MetodosSQLite.listaNegocios){
         if (n.nombre.contains(value) || n.productos.toString().contains(value)){
           if(!listaTemp.contains(n)){
+            listaTemp = listaTemp.toList();
             listaTemp.add(n);
           };
         }

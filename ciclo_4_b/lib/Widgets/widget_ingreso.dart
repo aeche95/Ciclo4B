@@ -23,35 +23,42 @@ class _WidgetIngresoState extends State<WidgetIngreso>{
      child: Scaffold(
        body: Stack(
          children: [
-           WidgetContainer1(),
+           WidgetContainer1(height: 0.75,),
            Column(
            mainAxisSize: MainAxisSize.max,
            mainAxisAlignment: MainAxisAlignment.center,
            children: <Widget>[
-             TextField(
-               decoration: InputDecoration(
-                   border: OutlineInputBorder(),
-                   labelText: "Usuario",
-                   icon: Icon(Icons.person),
+             Padding(
+               padding: const EdgeInsets.all(10.0),
+               child: TextField(
+                 decoration: InputDecoration(
+                     border: OutlineInputBorder(),
+                     labelText: "Usuario",
+                     icon: Icon(Icons.person),
+                 ),
+                 onChanged: (String value){
+                   textoUsuario = value;
+                 },
+                 enableSuggestions: true,
+
 
                ),
+             ),
+             Padding(
+               padding: const EdgeInsets.all(10.0),
+               child: TextField(
+               decoration: InputDecoration(
+               border: OutlineInputBorder(),
+               labelText: "Contraseña",
+               icon: Icon(Icons.password)
+               ),
+               obscureText: true,
+               enableSuggestions: false,
+               autocorrect: false,
                onChanged: (String value){
-                 textoUsuario = value;
-               },
-
-             ),
-             TextField(
-             decoration: InputDecoration(
-             border: OutlineInputBorder(),
-             labelText: "Contraseña",
-             icon: Icon(Icons.password)
-             ),
-             obscureText: true,
-             enableSuggestions: false,
-             autocorrect: false,
-             onChanged: (String value){
-               textoContrasena = value;
-               },
+                 textoContrasena = value;
+                 },
+               ),
              ),
              ButtonBar(
                children: [
@@ -59,7 +66,7 @@ class _WidgetIngresoState extends State<WidgetIngreso>{
                      onPressed: (){
                        db.connect();
                        bool correcto = false;
-                       for (Usuario u in db.listaUsuarios){
+                       for (Usuario u in MetodosSQLite.listaUsuarios){
                          if (u.password == textoContrasena){
                            correcto = true;
                          }

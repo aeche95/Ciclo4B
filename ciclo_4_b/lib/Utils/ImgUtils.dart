@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class ImgUtils{
 
-  static Image ImageUtil(String ImageName){
+  static Image ImageUtil(String ImageName, double width, double height){
     String path = "assets/imagenes/";
     return Image.asset(
       path+ImageName,
-      width: 120,
-      height: 120,);
+      width: width,
+      height: height,);
   }
 }

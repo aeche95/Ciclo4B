@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.teal,
       ),
       home: MyHomePage(),
     );
@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
+  MyHomePage({Key? key}) : super(key: key);
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -56,6 +56,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool busquedaActiva = false;
   int _indice = 0;
+  static List<String> titulos = <String>[
+    "Lista de Negocios",
+    "Añadir",
+    "Pedidos",
+    "Configuracion"
+  ];
   static List<Widget> WidgetsPaginaPrincipal = <Widget>[
     WidgetListaNegocios(listaNegocios: MetodosSQLite.listaNegocios,),
     WidgetInsertar(),
@@ -78,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.tealAccent,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(titulos[_indice]),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),

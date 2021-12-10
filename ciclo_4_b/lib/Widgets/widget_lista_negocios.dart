@@ -18,8 +18,13 @@ class _WidgetListaNegociosState extends State<WidgetListaNegocios>{
       itemCount: widget.listaNegocios.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          color: Colors.white,
-          margin: EdgeInsets.only(bottom: 20),
+          decoration: BoxDecoration(
+              border: Border.all(
+                  color: Colors.white),
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+          ),
+          margin: EdgeInsets.all (20),
           child: WidgetNegocio(negocio:
           widget.listaNegocios[index]
           ),

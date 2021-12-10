@@ -1,4 +1,5 @@
 import 'package:ciclo_4_b/Utils/ImgUtils.dart';
+import 'package:ciclo_4_b/Widgets/widget_lista_productos.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../Modelo/negocio.dart';
@@ -14,6 +15,10 @@ class WidgetNegocio extends StatefulWidget {
 
 class _WidgetNegocioState extends State<WidgetNegocio> {
   final double textSize = 14;
+  final double logoWidth = 100;
+  final double logoHeight = 100;
+  final double fotoWidth = 200;
+  final double fotoHeight = 200;
   late GoogleMapController mapController;
   final LatLng _center = const LatLng(45.521563, -122.677433);
 
@@ -30,59 +35,83 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                ImgUtils.ImageUtil(widget.negocio.logoName),
-                Column(
-                  children: [
-                    Text(
-                        widget.negocio.nombre,
-                      style: TextStyle(
-                        fontSize: 18
+    return Container(
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          ImgUtils.ImageUtil(widget.negocio.logoName,logoWidth,logoHeight),
+                          Column(
+                            children: [
+                              Text(
+                                widget.negocio.nombre,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.deepPurple
+                                ),
+                              ),
+                              hacerFilaDatos("", widget.negocio.direccion),
+                              hacerFilaDatos("Telefono ", widget.negocio.telefono),
+                              hacerFilaDatos("Celular ", widget.negocio.celular),
+
+                              TextButton(
+                                      onPressed: () => _abrirURL(widget.negocio.paginaWeb),
+                                      child: Text(
+                                          widget.negocio.paginaWeb,
+                                        style: estilo(),
+                                      ),
+                              ),
+                                  ]
+                              ),
+                            ],
+                    ),
+                    /*SizedBox(
+                      width: 300,
+                      height: 200,
+                      child: GoogleMap(
+                          onMapCreated: _onMapCreated,
+                          initialCameraPosition: CameraPosition(
+                            target: _center,
+                            zoom: 11.0,
+                          ),
+                      ),
+                    ),*/
+
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Text("Productos",
+                          style: estilo(),
+                          ),
+                          Text(
+                              widget.negocio.productos.toString(),
+                            style: estilo(),
+                          )
+                        ],
                       ),
                     ),
-                    hacerFilaDatos("", widget.negocio.direccion),
-                    hacerFilaDatos("Telefono ", widget.negocio.telefono),
-                    hacerFilaDatos("Celular ", widget.negocio.celular),
-
-                    TextButton(
-                            onPressed: () => _abrirURL(widget.negocio.paginaWeb),
-                            child: Text(widget.negocio.paginaWeb),
-                    ),
-                        ]
-                    ),
-                  ],
+                    ImgUtils.ImageUtil(widget.negocio.fotoName, fotoWidth,fotoHeight)
+                  ]
+              ),
           ),
-          /*SizedBox(
-            width: 300,
-            height: 200,
-            child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: _center,
-                  zoom: 11.0,
-                ),
-            ),
-          ),*/
-
-          Container(
-            child: Column(
-              children: <Widget>[
-                Text("Productos",
-                style: TextStyle(
-                  fontSize: textSize
-                ),),
-                Text(widget.negocio.productos.toString())
-              ],
-            ),
-          ),
-          ImgUtils.ImageUtil(widget.negocio.fotoName)
-        ]
+          Center(
+            child: IconButton(
+                onPressed: () => {
+                Navigator.push(
+                    context, MaterialPageRoute(
+                      builder: (context) => WidgetListaProductos(nombreNegocio: widget.negocio.nombre)))
+                },
+                icon: Icon(Icons.chevron_right)),
+          )
+        ],
+      ),
     );
   }
 
@@ -92,18 +121,23 @@ class _WidgetNegocioState extends State<WidgetNegocio> {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text(label,
-              style: TextStyle(
-                fontSize: textSize
-              )
+          Text(
+              label,
+              style: estilo()
           ),
           Text(dato,
-          style: TextStyle(
-          fontSize: textSize)
+          style: estilo()
           )
         ]
     );
   }
+
+  TextStyle estilo () {
+  return TextStyle(
+  fontSize: textSize,
+  color: Colors.deepPurple
+  );
+}
 }
 
 
